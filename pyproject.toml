@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "advent-of-code"
+version = "0.1.0"
+description = ""
+authors = ["Mikkel Bjoern <mb@halfspace.io>"]
+readme = "README.md"
+packages = [{include = "advent_of_code"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+browser-cookie3 = "^0.19.1"
+requests = "^2.32.3"
+pyperclip = "^1.9.0"
+numpy = "^2.2.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
