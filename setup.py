@@ -3,6 +3,7 @@ import argparse
 import datetime
 import os
 import shutil
+import sys
 from pathlib import Path
 
 SESSION_ID = os.environ['AOC_SESSION_ID']
@@ -23,6 +24,11 @@ else:
     year = str(year if year else now.year).rjust(4, '0')
     day = str(day if day else now.day).rjust(2, '0')
 print(f'Setting AOC up for: {day}-12-{year}!')
+
+# some years are special cases ...
+if year == '2019':
+    print('2019 is handled as a rust package - check 2019 folder!')
+    sys.exit()
 
 path = BASE_PATH / year / day
 os.makedirs(path, exist_ok=False)
