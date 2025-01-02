@@ -7,23 +7,25 @@
 // [ ] make a template for new days and code to to execute them
 // [ ] refactor to allow for multiple years
 
-use solutions::Solver;
 
 mod solutions;
 mod input;
+mod intcode;
 
 
 fn main() {
 
-    let day = 1;    
+    let day = 2;    
     
     let input = input::get_input(day);
     let solver = solutions::get_solver(day);
     
-    let solutions = solver.solve(&input);
+    let solutions = solver(&input);
 
-    println!("{}", solutions.part1.unwrap());
-    println!("{}", solutions.part2.unwrap());
+    println!("{}", solutions.part1.unwrap_or("No solution to part 1.".to_string()));
+    println!("{}", solutions.part2.unwrap_or("No solution to part 2.".to_string()));
+
+   
 }
 
 
