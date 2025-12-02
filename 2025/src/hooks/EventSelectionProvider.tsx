@@ -29,7 +29,7 @@ export function SelectedEventReducer(selectedEvent: Event, action: SelectEventAc
         case "set_year":
             return { ...selectedEvent, year: action.year };
         case "set_day":
-            return { ...selectedEvent, day: action.day };
+            return { ...selectedEvent, day: 1};
         default:
             return selectedEvent;
     }
