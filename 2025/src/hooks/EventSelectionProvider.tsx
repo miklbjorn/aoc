@@ -19,13 +19,11 @@ type SelectEventAction = {
 export const SelectedEventContext = createContext(DEFAULT_EVENT);
 export const SelectedEventDispatchContext = createContext((action: SelectEventAction) => {DEFAULT_EVENT});
 
-
-
 export function SelectedEventReducer(selectedEvent: Event, action: SelectEventAction) {
     console.log("Reducing action:", action);
     switch (action.type) {
         case "set_event":
-            return { year: action.year ?? selectedEvent.year, day: action.day ?? selectedEvent.day };
+            return { year: action.year, day: action.day };
         case "set_year":
             return { day:1, year: action.year };
         case "set_day":
@@ -35,7 +33,8 @@ export function SelectedEventReducer(selectedEvent: Event, action: SelectEventAc
     }
 }
 
-export function SelectedEventProvider({default_year=2025, children}: {default_year: number; children: React.ReactNode}) {
+export function SelectedEventProvider({default_year=2025, children}: {default_year?: number; children: React.ReactNode}) {
+    default_year = default_year ?? 2025;
     const [selectedEvent, dispatch] = useReducer(SelectedEventReducer, { year: default_year, day: 1 });
 
     return (

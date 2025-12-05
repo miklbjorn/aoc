@@ -1,18 +1,26 @@
 'use client';
 
-import { SelectedEventProvider } from "@/hooks/EventSelectionProvider";
+import { useSelectedEvent, useSelectedEventDispatch } from "@/hooks/EventSelectionProvider";
 import { EventDay } from "./EventDay";
 import { SomeOtherComponent } from "./SomeOtherComponent";
+import { useEffect } from "react";
 
-export function App({year=undefined}: {year?: number}) {
+export function App({year}: {year?: number}) {
 
-    year = year ?? new Date().getFullYear();
+  const dispatch = useSelectedEventDispatch();
+  const event = useSelectedEvent();
+
+  useEffect(() => {
+    if (year && year !== event.year) {
+      console.log("Setting year to", year);
+      dispatch({ type: "set_year", year: year, day: 1 });
+    }
+  }, [year, dispatch, event.year]);
 
     return (
-        <SelectedEventProvider default_year={year}>
+       <> 
         <SomeOtherComponent />
-
         <EventDay />
-        </SelectedEventProvider>
+        </>
   );
 }

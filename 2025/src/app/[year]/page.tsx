@@ -1,4 +1,5 @@
-import { App } from "@/components/App";
+
+import { App } from "@/components/app";
 
 export default async function Home({params}: {params: Promise<{year: number}>}) {
   const {year} = await params;
